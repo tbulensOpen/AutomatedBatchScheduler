@@ -1,13 +1,19 @@
 package org.tbulens.batchscheduler.service
 
 import org.quartz.Job
+import org.quartz.JobDetail
 import org.quartz.JobExecutionContext
 import org.quartz.JobExecutionException
+import org.tbulens.batchscheduler.util.HttpRequester
 
 class JobRequester implements Job {
 
+    HttpRequester httpRequester
+
     void execute(JobExecutionContext context) throws JobExecutionException {
-        println "Hello -- " + context.getJobDetail().getKey().name
-        //To change body of implemented methods use File | Settings | File Templates.
+        JobDetail jobDetail = context.getJobDetail()
+        String jobName = jobDetail.getKey().name
+        def data = jobDetail.jobDataMap.getWrappedMap()
+        httpRequester.send(jobName, data)
     }
 }
