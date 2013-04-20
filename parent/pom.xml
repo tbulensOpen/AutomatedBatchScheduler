@@ -1,18 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-	<modelVersion>4.0.0</modelVersion>
-	
-	<groupId>org.tbulens.automated-batch-scheduler</groupId>
-	<artifactId>automated-batch-scheduler-parent</artifactId>
-	<packaging>pom</packaging>
-	<version>1.0.0-SNAPSHOT</version>
-	
-	<name>Automated Batch Scheduler Parent</name>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
 
- <properties>
+    <groupId>org.tbulens.automated-batch-scheduler</groupId>
+    <artifactId>automated-batch-scheduler-parent</artifactId>
+    <packaging>pom</packaging>
+    <version>1.0.0-SNAPSHOT</version>
+
+    <name>Automated Batch Scheduler Parent</name>
+
+    <properties>
         <java.version>1.6</java.version>
         <junit.version>4.10</junit.version>
-        <groovy.version>2.0.4</groovy.version>
+        <groovy.version>2.0.5</groovy.version>
         <gmaven.version>1.4</gmaven.version>
         <slf4j.version>1.6.4</slf4j.version>
         <log4j.version>1.2.16</log4j.version>
@@ -20,26 +21,27 @@
         <fitlibrary.version>20080812</fitlibrary.version>
         <gmock.version>0.8.2</gmock.version>
         <hamcrest.version>1.3</hamcrest.version>
+        <quartz-scheduler.version>2.1.7</quartz-scheduler.version>
         <spring.version>3.1.2.RELEASE</spring.version>
     </properties>
 
-   <dependencyManagement>
-      <dependencies>
-          <dependency>
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
                 <groupId>junit</groupId>
                 <artifactId>junit</artifactId>
                 <version>${junit.version}</version>
                 <scope>test</scope>
             </dependency>
             <dependency>
-							<groupId>org.gmock</groupId>
-							<artifactId>gmock</artifactId>
-							<version>${gmock.version}</version>
-						</dependency>
-						<dependency>
-            	<groupId>org.hamcrest</groupId>
-	            <artifactId>hamcrest-all</artifactId>
-	            <version>${hamcrest.version}</version>
+                <groupId>org.gmock</groupId>
+                <artifactId>gmock</artifactId>
+                <version>${gmock.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.hamcrest</groupId>
+                <artifactId>hamcrest-all</artifactId>
+                <version>${hamcrest.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.fitnesse</groupId>
@@ -82,10 +84,15 @@
                 <version>2.5</version>
                 <scope>provided</scope>
             </dependency>
-      </dependencies>
-   </dependencyManagement>
+            <dependency>
+            	<groupId>org.quartz-scheduler</groupId>
+            	<artifactId>quartz</artifactId>
+            	<version>${quartz-scheduler.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
- <build>
+    <build>
         <sourceDirectory>src/main/groovy</sourceDirectory>
         <testSourceDirectory>src/test/groovy</testSourceDirectory>
         <pluginManagement>
@@ -146,4 +153,4 @@
             </plugins>
         </pluginManagement>
     </build>
-	</project>
+</project>
