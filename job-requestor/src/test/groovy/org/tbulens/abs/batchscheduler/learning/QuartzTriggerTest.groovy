@@ -1,4 +1,4 @@
-package org.tbulens.batchscheduler.learning
+package org.tbulens.abs.batchscheduler.learning
 
 import org.junit.Test
 import static org.quartz.JobBuilder.*
@@ -8,7 +8,7 @@ import org.quartz.JobDetail
 import org.quartz.Scheduler
 import org.quartz.Trigger
 import org.quartz.impl.StdSchedulerFactory
-import org.tbulens.batchscheduler.service.JobRequester
+import org.tbulens.abs.batchscheduler.service.JobRequester
 
 
 class QuartzTriggerTest {
