@@ -15,7 +15,7 @@ import static org.quartz.TriggerBuilder.newTrigger
 class QuartzFactory {
 
 
-    Scheduler createScheduler() {
+    Scheduler createSchedule() {
         StdSchedulerFactory.getDefaultScheduler()
     }
 
@@ -42,7 +42,7 @@ class QuartzFactory {
 
     private Trigger createSimpleTrigger(String triggerName, String jobGroup) {
         Trigger trigger = newTrigger()
-                .withIdentity(triggerName, jobGroup)
+                .withIdentity(triggerName + "SimpleTrigger", jobGroup)
                 .startNow()
                 .withSchedule(simpleSchedule())
                 .build()
