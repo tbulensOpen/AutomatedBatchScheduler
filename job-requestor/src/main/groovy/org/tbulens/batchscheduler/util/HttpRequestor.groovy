@@ -10,7 +10,7 @@ class HttpRequester {
     int send(String jobName, Map<String, String> data) {
         HTTPBuilder http = new HTTPBuilder(url)
 
-        http.post( path: 'update.xml', body: data,
+        http.post( path: "/$jobName", body: data,
                    requestContentType: URLENC ) { resp ->
 
           println "Tweet response status: ${resp.statusLine}"
