@@ -31,18 +31,10 @@ class JobRequesterTest {
         Map<String, Object> data = [version: "1.0"]
 
         mockHttpRequester.send(JOB_NAME, data)
-        mockExecutionContext.getJobDetail().returns(createJobDetail(data))
+        mockExecutionContext.getJobDetail().returns( JobDetailMother.create(JOB_NAME, data))
 
         play {
             jobRequester.execute(mockExecutionContext)
         }
-    }
-
-    private JobDetail createJobDetail(Map<String, String> data) {
-        JobKey jobKey = new JobKey(JOB_NAME)
-        JobDetail jobDetail = new JobDetailImpl()
-        jobDetail.key = jobKey
-        jobDetail.jobDataMap = new JobDataMap(data)
-        jobDetail
     }
 }
