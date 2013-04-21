@@ -1,10 +1,10 @@
-package org.tbulens.batchscheduler.service
+package org.tbulens.abs.batchscheduler.service
 
 import org.quartz.Job
 import org.quartz.JobDetail
 import org.quartz.JobExecutionContext
 import org.quartz.JobExecutionException
-import org.tbulens.batchscheduler.util.HttpRequester
+import org.tbulens.abs.batchscheduler.util.HttpRequester
 
 class JobRequester implements Job {
 
