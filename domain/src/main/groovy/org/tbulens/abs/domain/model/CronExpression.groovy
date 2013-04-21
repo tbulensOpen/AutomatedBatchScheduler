@@ -1,7 +1,7 @@
 package org.tbulens.abs.domain.model
 
 class CronExpression {
-    int id
+    String name
     String expression
     String description
 }
