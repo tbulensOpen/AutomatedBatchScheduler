@@ -7,5 +7,5 @@ class BatchJobHistory {
     String groupName
     CronExpression cronExpression
     Date runDate
-    Status status
+    JobStatus status
 }
