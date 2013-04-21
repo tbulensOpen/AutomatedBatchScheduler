@@ -31,7 +31,7 @@ class BatchJobScheduleServiceTest {
         Scheduler scheduler = StdSchedulerFactory.getDefaultScheduler()
         mockAbsRepository.findAllBatchJobs().returns(createBatchJobs())
         mockQuartzFactory.createScheduler().returns(scheduler)
-
+                                                                                         N
         play {
           batchJobScheduleService.load()
         }
