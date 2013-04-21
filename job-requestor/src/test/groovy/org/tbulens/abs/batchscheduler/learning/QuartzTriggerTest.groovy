@@ -1,14 +1,16 @@
 package org.tbulens.abs.batchscheduler.learning
 
 import org.junit.Test
-import static org.quartz.JobBuilder.*
-import static org.quartz.TriggerBuilder.*
-import static org.quartz.SimpleScheduleBuilder.*
+import org.quartz.CronScheduleBuilder
 import org.quartz.JobDetail
 import org.quartz.Scheduler
 import org.quartz.Trigger
 import org.quartz.impl.StdSchedulerFactory
 import org.tbulens.abs.batchscheduler.service.JobRequester
+
+import static org.quartz.JobBuilder.newJob
+import static org.quartz.SimpleScheduleBuilder.simpleSchedule
+import static org.quartz.TriggerBuilder.newTrigger
 
 
 class QuartzTriggerTest {
@@ -28,7 +30,7 @@ class QuartzTriggerTest {
 
     private void scheduleJob(Scheduler scheduler, String jobName, String triggerName, String jobGroup) {
         JobDetail job = createJob(jobName, jobGroup)
-        Trigger trigger = createTrigger(triggerName, jobGroup)
+        Trigger trigger = createSimpleTrigger(triggerName, jobGroup)
         scheduler.scheduleJob(job, trigger);
     }
 
@@ -39,7 +41,7 @@ class QuartzTriggerTest {
                 .build()
     }
 
-    private Trigger createTrigger(String triggerName, String jobGroup) {
+    private Trigger createSimpleTrigger(String triggerName, String jobGroup) {
         Trigger trigger = newTrigger()
                 .withIdentity(triggerName, jobGroup)
                 .startNow()
@@ -48,4 +50,9 @@ class QuartzTriggerTest {
                 .repeatForever())
                 .build()
     }
+
+    private Trigger createCronTrigger(String cronExpression) {
+        CronScheduleBuilder.cronSchedule(cronExpression).build()
+    }
+
 }
