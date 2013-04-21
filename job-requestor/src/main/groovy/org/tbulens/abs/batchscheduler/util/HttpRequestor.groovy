@@ -1,4 +1,4 @@
-package org.tbulens.batchscheduler.util
+package org.tbulens.abs.batchscheduler.util
 
 import groovyx.net.http.HTTPBuilder
 import static groovyx.net.http.ContentType.URLENC

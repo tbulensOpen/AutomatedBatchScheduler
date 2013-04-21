@@ -1,9 +1,8 @@
-package org.tbulens.batchscheduler.util
+package org.tbulens.abs.batchscheduler.util
 
 import org.junit.Before
 import org.junit.Ignore
 import org.junit.Test
-
 
 class HttpRequesterTest {
 

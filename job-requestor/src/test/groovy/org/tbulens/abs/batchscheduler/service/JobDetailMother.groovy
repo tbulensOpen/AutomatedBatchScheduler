@@ -1,4 +1,4 @@
-package org.tbulens.batchscheduler.service
+package org.tbulens.abs.batchscheduler.service
 
 import org.quartz.JobDataMap
 import org.quartz.JobDetail
