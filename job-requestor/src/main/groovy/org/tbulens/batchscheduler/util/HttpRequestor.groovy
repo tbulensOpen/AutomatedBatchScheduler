@@ -7,7 +7,7 @@ class HttpRequester {
 
     String url
 
-    int send(String jobName, Map<String, String> data) {
+    int send(String jobName, Map<String, Object> data) {
         HTTPBuilder http = new HTTPBuilder(url)
 
         http.post( path: "/$jobName", body: data,

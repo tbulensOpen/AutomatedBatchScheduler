@@ -28,7 +28,7 @@ class JobRequesterTest {
 
     @Test
     void testExecute() {
-        Map<String, String> data = [version: "1.0"]
+        Map<String, Object> data = [version: "1.0"]
 
         mockHttpRequester.send(JOB_NAME, data)
         mockExecutionContext.getJobDetail().returns(createJobDetail(data))
