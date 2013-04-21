@@ -19,8 +19,10 @@
 
 
     <dependencies>
-
-        <!-- Test Dependencies -->
+        <dependency>
+            <groupId>org.tbulens.automated-batch-scheduler</groupId>
+            <artifactId>automated-batch-scheduler-domain</artifactId>
+        </dependency>
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
