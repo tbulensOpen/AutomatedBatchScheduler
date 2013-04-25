@@ -3,7 +3,7 @@ package org.tbulens.abs.batchscheduler.model
 import org.quartz.Trigger
 
 
-class BatchJobCronTriggers {
+class BatchJobTriggers {
     Map<String, Trigger> cronTriggers = [:]
     Map<String, Trigger> simpleTriggers = [:]
 

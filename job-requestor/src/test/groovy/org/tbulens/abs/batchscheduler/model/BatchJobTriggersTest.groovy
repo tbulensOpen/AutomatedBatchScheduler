@@ -8,11 +8,11 @@ import org.quartz.impl.triggers.CronTriggerImpl
 
 class BatchJobTriggersTest {
 
-    BatchJobCronTriggers batchJobTriggers
+    BatchJobTriggers batchJobTriggers
 
     @Before
     void setUp() {
-        batchJobTriggers = new BatchJobCronTriggers()
+        batchJobTriggers = new BatchJobTriggers()
     }
 
     @Test
