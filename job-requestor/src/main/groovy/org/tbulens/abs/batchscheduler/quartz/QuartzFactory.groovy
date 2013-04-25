@@ -1,4 +1,5 @@
 package org.tbulens.abs.batchscheduler.quartz
+
 import org.quartz.JobDetail
 import org.quartz.Scheduler
 import org.quartz.Trigger
@@ -40,9 +41,9 @@ class QuartzFactory {
                 .build()
     }
 
-    private Trigger createSimpleTrigger(String triggerName, String jobGroup) {
+    Trigger createSimpleTrigger(String jobName, String jobGroup) {
         Trigger trigger = newTrigger()
-                .withIdentity(triggerName + "SimpleTrigger", jobGroup)
+                .withIdentity(jobName, jobGroup)
                 .startNow()
                 .withSchedule(simpleSchedule())
                 .build()
@@ -51,9 +52,17 @@ class QuartzFactory {
     private Trigger createCronTrigger(BatchJob batchJob) {
         CronExpression cronExpression = batchJob.cronExpression
         Trigger trigger = newTrigger()
-            .withIdentity(cronExpression.name, batchJob.groupName)
-            .withSchedule(cronSchedule(cronExpression.expression))
-            .forJob(batchJob.jobName, batchJob.groupName)
-            .build();
+                .withIdentity(cronExpression.name, batchJob.groupName)
+                .withSchedule(cronSchedule(cronExpression.expression))
+                .forJob(batchJob.jobName, batchJob.groupName)
+                .build();
     }
+
+    Trigger createCronTriggerNew(String triggerName, String cronExpression) {
+        Trigger trigger = newTrigger()
+                .withIdentity(triggerName)
+                .withSchedule(cronSchedule(cronExpression))
+                .build()
+    }
+
 }

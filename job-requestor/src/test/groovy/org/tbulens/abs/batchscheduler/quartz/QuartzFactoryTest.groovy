@@ -37,10 +37,16 @@ class QuartzFactoryTest {
     void scheduleJob_simpleTrigger() {
         BatchJob batchJob = BatchJobMother.create("JobName")
         batchJob.cronExpression = null
+
         quartzFactory.scheduleJob(schedule, batchJob)
 
         assert schedule.getJobDetail(new JobKey(batchJob.jobName, batchJob.groupName))
-        assert schedule.getTrigger(new TriggerKey(batchJob.jobName + "SimpleTrigger", batchJob.groupName))
+        assert schedule.getTrigger(new TriggerKey(batchJob.jobName, batchJob.groupName))
+    }
+
+    @Test
+    void createCronExpressionNew() {
+        assert quartzFactory.createCronTriggerNew("TriggerName", "0 0 12 * * ?")
     }
 
 
