@@ -14,20 +14,16 @@ class BatchJobTriggersFactory {
         Trigger trigger
 
          batchJobs.each { batchJob ->
-             if (batchJobs.cronExpression) {
-                 trigger = createTrigger(batchJob.cronExpression.name, batchJob.cronExpression.expression)
+             if (batchJob.cronExpression) {
+                 trigger = quartzFactory.createCronTriggerNew(batchJob.cronExpression.name, batchJob.cronExpression.expression)
                  batchJobTriggers.addCronTrigger(batchJob.cronExpression.name, trigger)
              }
              else {
-                 trigger = createTrigger(batchJob.jobName, batchJob.groupName)
+                 trigger = quartzFactory.createSimpleTrigger(batchJob.jobName, batchJob.groupName)
                  batchJobTriggers.addSimpleTrigger(batchJob.jobName, trigger)
              }
 
          }
         batchJobTriggers
-    }
-
-    private Trigger createTrigger(String name, String groupName) {
-        quartzFactory.createSimpleTrigger(name, groupName)
     }
 }
