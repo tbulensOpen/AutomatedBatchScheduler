@@ -12,6 +12,6 @@ class BatchJobScheduleService {
 
     void load() {
         List<BatchJob> batchJobs = absRepository.findAllBatchJobs()
-        Scheduler scheduler = quartzFactory.createScheduler()
+        Scheduler scheduler = quartzFactory.createSchedule()
     }
 }
