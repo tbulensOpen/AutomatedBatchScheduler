@@ -6,7 +6,7 @@ import org.junit.Test
 import org.quartz.Trigger
 import org.quartz.impl.triggers.CronTriggerImpl
 import org.quartz.impl.triggers.SimpleTriggerImpl
-import org.tbulens.abs.batchscheduler.model.BatchJobCronTriggers
+import org.tbulens.abs.batchscheduler.model.BatchJobTriggers
 import org.tbulens.abs.domain.model.BatchJob
 import org.tbulens.abs.domain.model.BatchJobMother
 
@@ -25,7 +25,7 @@ class BatchJobTriggersFactoryTest {
     @Test
     void create_NoJobs() {
         play {
-            BatchJobCronTriggers triggers = batchJobTriggersFactory.create([])
+            BatchJobTriggers triggers = batchJobTriggersFactory.create([])
             assert triggers.cronTriggers.isEmpty()
             assert triggers.simpleTriggers.isEmpty()
         }
@@ -39,7 +39,7 @@ class BatchJobTriggersFactoryTest {
         mockQuartzFactory.createCronTriggerNew(batchJob.cronExpression.name, batchJob.cronExpression.expression).returns(cronTrigger)
 
         play {
-            BatchJobCronTriggers triggers = batchJobTriggersFactory.create([batchJob])
+            BatchJobTriggers triggers = batchJobTriggersFactory.create([batchJob])
             assert triggers.cronTriggers.size() == 1
             assert triggers.cronTriggers.get(batchJob.cronExpression.name) == cronTrigger
             assert triggers.simpleTriggers.isEmpty()
@@ -54,7 +54,7 @@ class BatchJobTriggersFactoryTest {
         mockQuartzFactory.createSimpleTrigger(batchJob.jobName, batchJob.groupName).returns(trigger)
 
         play {
-            BatchJobCronTriggers triggers = batchJobTriggersFactory.create([batchJob])
+            BatchJobTriggers triggers = batchJobTriggersFactory.create([batchJob])
             assert triggers.cronTriggers.size() == 0
             assert triggers.simpleTriggers.get(batchJob.jobName) == trigger
             assert triggers.simpleTriggers.size() == 1
