@@ -5,11 +5,12 @@ import org.junit.Before
 import org.junit.Test
 import org.quartz.Scheduler
 import org.quartz.impl.StdSchedulerFactory
+import org.tbulens.abs.batchscheduler.model.BatchJobTriggers
+import org.tbulens.abs.batchscheduler.quartz.BatchJobTriggersFactory
 import org.tbulens.abs.batchscheduler.quartz.QuartzFactory
 import org.tbulens.abs.domain.model.BatchJob
 import org.tbulens.abs.domain.model.BatchJobMother
 import org.tbulens.abs.domain.repository.AbsRepository
-
 
 @WithGMock
 class BatchJobScheduleServiceTest {
@@ -17,27 +18,30 @@ class BatchJobScheduleServiceTest {
     BatchJobScheduleService batchJobScheduleService
     AbsRepository mockAbsRepository
     QuartzFactory mockQuartzFactory
+    BatchJobTriggersFactory mockBatchJobTriggersFactory
 
     @Before
     void setUp() {
-        mockAbsRepository = mock(AbsRepository)
-        mockQuartzFactory = mock(QuartzFactory)
 
-        batchJobScheduleService = new BatchJobScheduleService(absRepository: mockAbsRepository, quartzFactory: mockQuartzFactory)
+        batchJobScheduleService = createBatchJobScheduleService()
     }
 
     @Test
     void load() {
+        BatchJobTriggers batchJobTriggers = new BatchJobTriggers()
         Scheduler scheduler = StdSchedulerFactory.getDefaultScheduler()
-        mockAbsRepository.findAllBatchJobs().returns(createBatchJobs())
+
+        List<BatchJob> batchJobs = createBatchJobs()
+        mockAbsRepository.findAllBatchJobs().returns(batchJobs)
+        mockBatchJobTriggersFactory.create(batchJobs).returns(batchJobTriggers)
         mockQuartzFactory.createSchedule().returns(scheduler)
 
         play {
-          batchJobScheduleService.load()
+            batchJobScheduleService.load()
         }
     }
 
-    private def createBatchJobs() {
+    private List<BatchJob> createBatchJobs() {
         def batchJobs = []
         batchJobs << createBatchJob("Job1", "Group1", "* 0 * * ? *")
         batchJobs << createBatchJob("Job2", "Group1", "* 0 * * ? *")
@@ -48,4 +52,13 @@ class BatchJobScheduleServiceTest {
     private BatchJob createBatchJob(String jobName, String jobGroup, String cronExpression) {
         BatchJobMother.create(jobName, jobGroup, cronExpression)
     }
+
+    private BatchJobScheduleService createBatchJobScheduleService() {
+        mockAbsRepository = mock(AbsRepository)
+        mockQuartzFactory = mock(QuartzFactory)
+        mockBatchJobTriggersFactory = mock(BatchJobTriggersFactory)
+
+        new BatchJobScheduleService(absRepository: mockAbsRepository, quartzFactory: mockQuartzFactory, batchJobTriggersFactory: mockBatchJobTriggersFactory)
+    }
+
 }

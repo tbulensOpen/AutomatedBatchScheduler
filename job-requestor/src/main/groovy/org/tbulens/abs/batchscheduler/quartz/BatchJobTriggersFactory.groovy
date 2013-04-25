@@ -1,15 +1,15 @@
 package org.tbulens.abs.batchscheduler.quartz
 
 import org.quartz.Trigger
-import org.tbulens.abs.batchscheduler.model.BatchJobCronTriggers
+import org.tbulens.abs.batchscheduler.model.BatchJobTriggers
 import org.tbulens.abs.domain.model.BatchJob
 
 class BatchJobTriggersFactory {
 
     QuartzFactory quartzFactory
 
-    BatchJobCronTriggers create(List<BatchJob> batchJobs) {
-        BatchJobCronTriggers batchJobTriggers = new BatchJobCronTriggers()
+    BatchJobTriggers create(List<BatchJob> batchJobs) {
+        BatchJobTriggers batchJobTriggers = new BatchJobTriggers()
 
         Trigger trigger
 
