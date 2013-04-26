@@ -34,6 +34,12 @@ class QuartzFactory {
                   .build()
       }
 
+    JobDetail createJob(String jobName, String jobGroup) {
+            newJob(JobRequester.class)
+                    .withIdentity(jobName, jobGroup)
+                    .build()
+        }
+
     void scheduleJob(Scheduler scheduler, BatchJob batchJob) {
         JobDetail job = createJob(batchJob.jobName, batchJob.groupName)
 
@@ -49,11 +55,7 @@ class QuartzFactory {
         scheduler.scheduleJob(job, trigger);
     }
 
-    private JobDetail createJob(String jobName, String jobGroup) {
-        newJob(JobRequester.class)
-                .withIdentity(jobName, jobGroup)
-                .build()
-    }
+
 
 
 
