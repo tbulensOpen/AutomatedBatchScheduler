@@ -16,11 +16,11 @@ class BatchJobTriggersFactory {
          batchJobs.each { batchJob ->
              if (batchJob.cronExpression) {
                  trigger = quartzFactory.createCronTriggerNew(batchJob.cronExpression.name, batchJob.cronExpression.expression)
-                 batchJobTriggers.addCronTrigger(batchJob.cronExpression.name, trigger)
+                 batchJobTriggers.addCronTrigger(batchJob, trigger)
              }
              else {
                  trigger = quartzFactory.createSimpleTrigger(batchJob.jobName, batchJob.groupName)
-                 batchJobTriggers.addSimpleTrigger(batchJob.jobName, trigger)
+                 batchJobTriggers.addSimpleTrigger(batchJob, trigger)
              }
 
          }

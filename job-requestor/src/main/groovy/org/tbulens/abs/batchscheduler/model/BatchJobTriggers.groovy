@@ -1,21 +1,26 @@
 package org.tbulens.abs.batchscheduler.model
 
 import org.quartz.Trigger
+import org.tbulens.abs.domain.model.BatchJob
 
 
 class BatchJobTriggers {
     Map<String, Trigger> cronTriggers = [:]
     Map<String, Trigger> simpleTriggers = [:]
+    List<BatchJob> cronJobs = []
+    List<BatchJob> simpleJobs = []
 
-    Trigger get(String triggerName) {
+    Trigger getCronTrigger(String triggerName) {
         cronTriggers.get(triggerName)
     }
 
-    void addCronTrigger(String triggerName, Trigger trigger) {
-       cronTriggers.put(triggerName, trigger)
+    void addCronTrigger(BatchJob batchJob, Trigger trigger) {
+       cronTriggers.put(batchJob.cronExpression.name, trigger)
+        cronJobs.add(batchJob)
     }
 
-    void addSimpleTrigger(String jobName, Trigger trigger) {
-        simpleTriggers.put(jobName, trigger)
+    void addSimpleTrigger(BatchJob batchJob, Trigger trigger) {
+        simpleTriggers.put(batchJob.jobName, trigger)
+        simpleJobs.add(batchJob)
     }
 }

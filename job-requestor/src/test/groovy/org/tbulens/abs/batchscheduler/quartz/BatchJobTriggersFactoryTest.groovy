@@ -28,6 +28,8 @@ class BatchJobTriggersFactoryTest {
             BatchJobTriggers triggers = batchJobTriggersFactory.create([])
             assert triggers.cronTriggers.isEmpty()
             assert triggers.simpleTriggers.isEmpty()
+            assert triggers.simpleJobs.isEmpty()
+            assert triggers.cronJobs.isEmpty()
         }
     }
 
@@ -41,8 +43,10 @@ class BatchJobTriggersFactoryTest {
         play {
             BatchJobTriggers triggers = batchJobTriggersFactory.create([batchJob])
             assert triggers.cronTriggers.size() == 1
+            assert triggers.cronJobs.size() == 1
             assert triggers.cronTriggers.get(batchJob.cronExpression.name) == cronTrigger
             assert triggers.simpleTriggers.isEmpty()
+            assert triggers.simpleJobs.isEmpty()
         }
     }
 
@@ -56,8 +60,10 @@ class BatchJobTriggersFactoryTest {
         play {
             BatchJobTriggers triggers = batchJobTriggersFactory.create([batchJob])
             assert triggers.cronTriggers.size() == 0
+            assert triggers.cronJobs.size() == 0
             assert triggers.simpleTriggers.get(batchJob.jobName) == trigger
             assert triggers.simpleTriggers.size() == 1
+            assert triggers.simpleJobs.size() == 1
         }
     }
 }
