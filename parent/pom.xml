@@ -24,10 +24,27 @@
         <quartz-scheduler.version>2.1.7</quartz-scheduler.version>
         <spring.version>3.1.2.RELEASE</spring.version>
         <http-builder.version>0.6</http-builder.version>
+        <spring.version>3.2.0.RELEASE</spring.version>
     </properties>
 
     <dependencyManagement>
         <dependencies>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-context</artifactId>
+                <version>${spring.version}</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>commons-logging</groupId>
+                        <artifactId>commons-logging</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-context-support</artifactId>
+                <version>${spring.version}</version>
+            </dependency>
             <dependency>
                 <groupId>org.tbulens.automated-batch-scheduler</groupId>
                 <artifactId>automated-batch-scheduler-domain</artifactId>
