@@ -23,6 +23,10 @@ class BatchJobScheduleService {
 
         loadCronJobs(batchJobCronTriggers, scheduler)
         loadSimpleJobs(batchJobCronTriggers, scheduler)
+
+        scheduler.start()
+        Thread.sleep(5000)
+        scheduler.shutdown()
     }
 
     private void loadCronJobs(BatchJobTriggers batchJobCronTriggers, scheduler) {
