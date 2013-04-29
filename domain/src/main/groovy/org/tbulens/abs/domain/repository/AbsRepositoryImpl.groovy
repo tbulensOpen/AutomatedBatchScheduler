@@ -1,9 +1,10 @@
 package org.tbulens.abs.domain.repository
 
+import org.springframework.stereotype.Repository
 import org.tbulens.abs.domain.model.BatchJob
 import org.tbulens.abs.domain.model.CronExpression
 
-
+@Repository
 class AbsRepositoryImpl implements AbsRepository {
 
     //todo: Replace with mysql implementation using hibernate.

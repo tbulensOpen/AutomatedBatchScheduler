@@ -16,6 +16,6 @@
         <property name="muleUrl" value="${abs.mule.url}"/>
     </bean>
 
-    <context:component-scan base-package="org.tbulens.abs.batchscheduler"/>
+    <context:component-scan base-package="org.tbulens.abs"/>
 
 </beans>
