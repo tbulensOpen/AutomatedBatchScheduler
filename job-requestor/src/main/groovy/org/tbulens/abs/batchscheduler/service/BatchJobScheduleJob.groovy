@@ -1,31 +1,13 @@
 package org.tbulens.abs.batchscheduler.service
-
 import org.springframework.context.ApplicationContext
 import org.springframework.context.support.ClassPathXmlApplicationContext
-
 
 class BatchJobScheduleJob {
 
     static ApplicationContext context
 
       static void main(String[] args) {
-
-          String systemPropertiesPath = System.getProperty("config.path")
-          if (systemPropertiesPath) {
-          }
-
-          if (args.size() == 0 || args[0] == "?") {
-              printInstructions()
-          }
-          else {
-              String path = args[0]
-              File configFile = new File(path)
-              if (configFile.exists()) {
-              }
-              else {
-                  printErrorInstruction(path)
-              }
-          }
+            load()
       }
 
       static synchronized ApplicationContext load() {
@@ -34,7 +16,6 @@ class BatchJobScheduleJob {
               }
               context
       }
-
 
 
       private static void printInstructions() {
