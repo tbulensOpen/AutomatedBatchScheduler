@@ -14,6 +14,10 @@ class BatchJobTriggers {
         cronTriggers.get(triggerName)
     }
 
+    Trigger getSimpleTrigger(String jobName) {
+        simpleTriggers.get(jobName)
+    }
+
     void addCronTrigger(BatchJob batchJob, Trigger trigger) {
        cronTriggers.put(batchJob.cronExpression.name, trigger)
         cronJobs.add(batchJob)
