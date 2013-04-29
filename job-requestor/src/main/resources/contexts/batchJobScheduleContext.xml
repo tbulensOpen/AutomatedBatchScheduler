@@ -13,7 +13,7 @@
     </bean>
 
     <bean id="httpRequester" class="org.tbulens.abs.batchscheduler.util.HttpRequester">
-        <property name="muleUrl" value="${abs.mule.url}"/>
+        <property name="requestUrl" value="${abs.batch.job.requester.url}"/>
     </bean>
 
     <context:component-scan base-package="org.tbulens.abs"/>

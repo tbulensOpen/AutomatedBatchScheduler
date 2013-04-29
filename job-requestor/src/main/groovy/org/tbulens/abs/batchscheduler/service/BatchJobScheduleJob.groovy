@@ -11,6 +11,8 @@ class BatchJobScheduleJob {
 
       static void main(String[] args) {
             load()
+            BatchJobScheduleService batchJobScheduleService = context.getBean("batchJobScheduleService", BatchJobScheduleService)
+            batchJobScheduleService.load()
       }
 
       static synchronized ApplicationContext load() {
