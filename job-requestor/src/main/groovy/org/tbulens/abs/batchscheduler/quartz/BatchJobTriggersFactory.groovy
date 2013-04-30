@@ -1,12 +1,15 @@
 package org.tbulens.abs.batchscheduler.quartz
 
 import org.quartz.Trigger
+import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.stereotype.Component
 import org.tbulens.abs.batchscheduler.model.BatchJobTriggers
 import org.tbulens.abs.domain.model.BatchJob
 
+@Component
 class BatchJobTriggersFactory {
 
-    QuartzFactory quartzFactory
+    @Autowired QuartzFactory quartzFactory
 
     BatchJobTriggers create(List<BatchJob> batchJobs) {
         BatchJobTriggers batchJobTriggers = new BatchJobTriggers()

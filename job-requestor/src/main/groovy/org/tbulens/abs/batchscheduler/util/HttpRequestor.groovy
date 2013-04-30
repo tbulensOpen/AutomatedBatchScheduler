@@ -3,7 +3,7 @@ import groovyx.net.http.HTTPBuilder
 
 class HttpRequester {
 
-    String muleUrl
+    String requestUrl
 
     int send(String jobName, Map<String, Object> data) {
         HTTPBuilder http = new HTTPBuilder(muleUrl)
