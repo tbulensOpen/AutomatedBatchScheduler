@@ -7,4 +7,6 @@ public interface AbsRepository {
 
     List<BatchJob> findAllBatchJobs()
 
+    BatchJob findBatchJobByName(String batchJob)
+
 }

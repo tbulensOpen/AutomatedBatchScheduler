@@ -3,6 +3,7 @@ package org.tbulens.abs.domain.repository
 import org.springframework.stereotype.Repository
 import org.tbulens.abs.domain.model.BatchJob
 import org.tbulens.abs.domain.model.CronExpression
+import org.tbulens.abs.domain.model.JobStatus
 
 @Repository
 class AbsRepositoryImpl implements AbsRepository {
@@ -14,6 +15,10 @@ class AbsRepositoryImpl implements AbsRepository {
         BatchJob batchJob3 = createBatchJob("Job3")
         batchJob3.lastRunDate = new Date()
         [createBatchJob("Job1"), batchJob2, batchJob3]
+    }
+
+    BatchJob findBatchJobByName(String batchJob) {
+        new BatchJob(jobName: batchJob, status: JobStatus.STOP)
     }
 
     private BatchJob createBatchJob(String jobName) {
