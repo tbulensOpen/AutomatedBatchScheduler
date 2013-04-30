@@ -3,6 +3,7 @@ import org.quartz.JobDetail
 import org.quartz.Scheduler
 import org.quartz.Trigger
 import org.quartz.impl.StdSchedulerFactory
+import org.springframework.stereotype.Component
 import org.tbulens.abs.batchscheduler.service.JobRequester
 import org.tbulens.abs.domain.model.BatchJob
 import org.tbulens.abs.domain.model.CronExpression
@@ -12,6 +13,7 @@ import static org.quartz.JobBuilder.newJob
 import static org.quartz.SimpleScheduleBuilder.simpleSchedule
 import static org.quartz.TriggerBuilder.newTrigger
 
+@Component
 class QuartzFactory {
 
 

@@ -1,13 +1,18 @@
 package org.tbulens.abs.batchscheduler.service
+
+import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.context.ApplicationContext
 import org.springframework.context.support.ClassPathXmlApplicationContext
 
 class BatchJobScheduleJob {
 
     static ApplicationContext context
+    @Autowired BatchJobScheduleService batchJobScheduleService
 
       static void main(String[] args) {
             load()
+            BatchJobScheduleService batchJobScheduleService = context.getBean("batchJobScheduleService", BatchJobScheduleService)
+            batchJobScheduleService.load()
       }
 
       static synchronized ApplicationContext load() {

@@ -13,6 +13,9 @@ class JobRequester implements Job {
     void execute(JobExecutionContext context) throws JobExecutionException {
         JobDetail jobDetail = context.getJobDetail()
         String jobName = jobDetail.getKey().name
+
+        println "Job Executing = "  + jobName
+
         def data = jobDetail.jobDataMap.getWrappedMap()
         httpRequester.send(jobName, data)
     }

@@ -10,6 +10,7 @@ import org.tbulens.abs.batchscheduler.quartz.BatchJobTriggersFactory
 import org.tbulens.abs.batchscheduler.quartz.QuartzFactory
 import org.tbulens.abs.domain.model.BatchJob
 import org.tbulens.abs.domain.model.BatchJobMother
+import org.tbulens.abs.domain.model.JobStatus
 import org.tbulens.abs.domain.repository.AbsRepository
 
 @WithGMock
@@ -22,7 +23,6 @@ class BatchJobScheduleServiceTest {
 
     @Before
     void setUp() {
-
         batchJobScheduleService = createBatchJobScheduleService()
     }
 
@@ -35,6 +35,10 @@ class BatchJobScheduleServiceTest {
         mockAbsRepository.findAllBatchJobs().returns(batchJobs)
         mockBatchJobTriggersFactory.create(batchJobs).returns(batchJobTriggers)
         mockQuartzFactory.createSchedule().returns(scheduler)
+
+        String jobName = BatchJobScheduleService.BATCH_JOB_SCHEDULER
+        BatchJob batchJobScheduler = new BatchJob(jobName: jobName, status: JobStatus.STOP)
+        mockAbsRepository.findBatchJobByName(BatchJobScheduleService.BATCH_JOB_SCHEDULER).returns(batchJobScheduler)
 
         play {
             batchJobScheduleService.load()
