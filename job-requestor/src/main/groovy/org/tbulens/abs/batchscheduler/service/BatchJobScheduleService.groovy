@@ -25,6 +25,7 @@ class BatchJobScheduleService {
     void load() {
         List<BatchJob> batchJobs = absRepository.findAllBatchJobs()
         BatchJobTriggers batchJobCronTriggers = batchJobTriggersFactory.create(batchJobs)
+
         scheduler = quartzFactory.createSchedule()
 
         loadCronJobs(batchJobCronTriggers, scheduler)
