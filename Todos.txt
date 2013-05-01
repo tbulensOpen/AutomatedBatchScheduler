@@ -1,22 +1,19 @@
 Todos:
 
-1) Spike on Quartz Triggers
-   a) Create Quartz Trigger passing in a Cron Expression having it call a Quartz Job
-
-2) Spike on Mule ( ESB ) to receive an Http Request and call Groovy Component
+1) Spike on Mule ( ESB ) to receive an Http Request and call Groovy Component
    a) Need to filter out request args to determine which Groovy Component to call
    b) Need to write a transformer to take in request params ( data map ) 
       and create a Groovy Map to pass in Groovy Component.
 
-3) Define Model Objects
+2) Define Model Objects
    a) Trigger 
    b) Job
    c) Job History
    d) Job Group
    e) Events
    
-4) Spike on Mule to verify class loading is not an issue running multiple batch jobs same time.
+3) Spike on Mule to verify class loading is not an issue running multiple batch jobs same time.
 
-5) Build Repository class to contruct Triggers and Jobs
+4) Build Repository class to construct Triggers and Jobs
 
    
