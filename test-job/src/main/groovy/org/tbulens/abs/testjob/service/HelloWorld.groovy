@@ -1,6 +1,5 @@
-package org.tbulens.abs.testjob.service
+package org.tbulens.abs.testjob.service;
 
 public interface HelloWorld {
-
-    void sayHello()
+    String sayHello()
 }
