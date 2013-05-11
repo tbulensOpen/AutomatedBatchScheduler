@@ -8,7 +8,7 @@
 
 
     <flow name="HelloWorld1" doc:name="HelloWorld">
-            <http:inbound-endpoint exchange-pattern="request-response" host="localhost" port="8080" doc:name="Http Endpoint" contentType="text/plain" encoding="UTF-8"/>
+            <http:inbound-endpoint exchange-pattern="request-response" host="localhost" port="8080" path="/job1" doc:name="Http Endpoint" contentType="text/plain" encoding="UTF-8"/>
             <logger message="Job1 is being about to be called." level="INFO"/>
             <component class="org.tbulens.abs.testjob.service.HelloWorldImpl" doc:name="Hello world example">
                 <no-arguments-entry-point-resolver>
