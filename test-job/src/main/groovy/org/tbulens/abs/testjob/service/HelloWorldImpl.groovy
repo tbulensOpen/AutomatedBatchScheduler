@@ -1,8 +1,9 @@
-package org.tbulens.abs.testjob.service
+package org.tbulens.abs.testjob.service;
 
-class HelloWorldImpl implements HelloWorld {
+public class HelloWorldImpl implements HelloWorld {
 
-    void sayHello() {
-        println "Say Hello"
+    @Override
+    String sayHello() {
+        "Hello, why are we not working yet."
     }
 }
