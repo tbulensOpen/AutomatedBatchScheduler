@@ -1,30 +1,24 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<mule xmlns="http://www.mulesoft.org/schema/mule/core"
+<mule xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns="http://www.mulesoft.org/schema/mule/core"
       xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
-      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-      xmlns:http="http://www.mulesoft.org/schema/mule/http"
-      xmlns:vm="http://www.mulesoft.org/schema/mule/vm"
-      xsi:schemaLocation="
-        http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
-        http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
-        http://www.mulesoft.org/schema/mule/vm http://www.mulesoft.org/schema/mule/vm/current/mule-vm.xsd">
+      xmlns:spring="http://www.springframework.org/schema/beans" version="CE-3.3.1"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="
+      http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+      http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-current.xsd
+      http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd">
 
-    <description>
-    This configuration uses an HTTP endpoint to receive requests.
-    </description>
 
-    <!--
-    To invoke the Hello service over HTTP, hit the following URL in your browser:
-
-        http://localhost:8888?name=Ross
-    -->
-
-    <flow name="HelloWorld" doc:name="HelloWorld">
-        <!--<http:inbound-endpoint exchange-pattern="request-response" host="localhost" port="8888" doc:name="Http Endpoint"/>-->
-        <http:inbound-endpoint exchange-pattern="request-response" host="localhost" port="8888" doc:name="HTTP Endpoint"/>
-        <component class="org.tbulens.groovymule.service.HelloWorldImpl" doc:name="Request Response"/>
-        <!--<catch-exception-strategy>-->
-                	<!--<logger level="ERROR" message="#[payload]" doc:name="Log Error"/>-->
-        <!--</catch-exception-strategy>-->
-    </flow>
+    <flow name="HelloWorld1" doc:name="HelloWorld">
+            <http:inbound-endpoint exchange-pattern="request-response" host="localhost" port="8080" path="/job1" doc:name="Http Endpoint" contentType="text/plain" encoding="UTF-8"/>
+            <logger message="Job1 is being about to be called." level="INFO"/>
+            <component class="org.tbulens.abs.testjob.service.HelloWorldImpl" doc:name="Hello world example">
+                <no-arguments-entry-point-resolver>
+                   <include-entry-point method="sayHello"/>
+               </no-arguments-entry-point-resolver>
+            </component>
+            <logger message="Job1 was called." level="INFO"/>
+            <catch-exception-strategy>
+             	<logger level="ERROR" message="Job1 Failed" doc:name="Log Error"/>
+            </catch-exception-strategy>
+        </flow>
 </mule>
+

@@ -6,7 +6,7 @@ import org.junit.Test
 
 class HelloWorldImplTest {
 
-    HelloWorld helloWorld
+    HelloWorldImpl helloWorld
 
     @Before
     void setUp() {
@@ -16,6 +16,6 @@ class HelloWorldImplTest {
 
     @Test
     void sayHello() {
-         helloWorld.sayHello()
+
     }
 }

@@ -52,6 +52,10 @@
             <groupId>org.springframework</groupId>
             <artifactId>spring-context-support</artifactId>
         </dependency>
+        <dependency>
+        	<groupId>org.mule</groupId>
+        	<artifactId>mule-core</artifactId>
+        </dependency>
     </dependencies>
 
     <build>
