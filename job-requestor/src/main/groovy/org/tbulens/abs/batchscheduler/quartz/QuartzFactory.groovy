@@ -1,15 +1,12 @@
 package org.tbulens.abs.batchscheduler.quartz
-import org.quartz.JobDetail
-import org.quartz.Scheduler
-import org.quartz.Trigger
+
+import org.quartz.*
 import org.quartz.impl.StdSchedulerFactory
 import org.springframework.stereotype.Component
-import org.tbulens.abs.batchscheduler.service.JobRequester
 import org.tbulens.abs.domain.model.BatchJob
 import org.tbulens.abs.domain.model.CronExpression
 
 import static org.quartz.CronScheduleBuilder.cronSchedule
-import static org.quartz.JobBuilder.newJob
 import static org.quartz.SimpleScheduleBuilder.simpleSchedule
 import static org.quartz.TriggerBuilder.newTrigger
 
@@ -22,28 +19,28 @@ class QuartzFactory {
     }
 
     Trigger createCronTriggerNew(String triggerName, String cronExpression) {
-          Trigger trigger = newTrigger()
-                  .withIdentity(triggerName)
-                  .withSchedule(cronSchedule(cronExpression))
-                  .build()
-      }
+        Trigger trigger = newTrigger()
+                .withIdentity(triggerName)
+                .withSchedule(cronSchedule(cronExpression))
+                .build()
+    }
 
     Trigger createSimpleTrigger(String jobName, String jobGroup) {
-          Trigger trigger = newTrigger()
-                  .withIdentity(jobName, jobGroup)
-                  .startNow()
-                  .withSchedule(simpleSchedule())
-                  .build()
-      }
+        Trigger trigger = newTrigger()
+                .withIdentity(jobName, jobGroup)
+                .startNow()
+                .withSchedule(simpleSchedule())
+                .build()
+    }
 
-    JobDetail createJob(String jobName, String jobGroup) {
-            newJob(JobRequester.class)
-                    .withIdentity(jobName, jobGroup)
-                    .build()
-        }
+    JobDetail createJob(BatchJob batchJob) {
+        JobBuilder jobBuilder = new JobBuilder().usingJobData(new JobDataMap(batchJob.data))
+        jobBuilder.withIdentity(batchJob.jobName, batchJob.groupName)
+        jobBuilder.build()
+    }
 
     void scheduleJob(Scheduler scheduler, BatchJob batchJob) {
-        JobDetail job = createJob(batchJob.jobName, batchJob.groupName)
+        JobDetail job = createJob(batchJob)
 
         Trigger trigger = null
         CronExpression cronExpression = batchJob.cronExpression
@@ -69,7 +66,6 @@ class QuartzFactory {
                 .forJob(batchJob.jobName, batchJob.groupName)
                 .build();
     }
-
 
 
 }

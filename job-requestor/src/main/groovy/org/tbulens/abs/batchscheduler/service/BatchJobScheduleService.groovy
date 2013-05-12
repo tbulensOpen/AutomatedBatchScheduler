@@ -56,14 +56,14 @@ class BatchJobScheduleService {
 
     private void loadCronJobs(BatchJobTriggers batchJobCronTriggers, scheduler) {
         batchJobCronTriggers.cronJobs.each { batchJob ->
-            JobDetail job = quartzFactory.createJob(batchJob.jobName, batchJob.groupName)
+            JobDetail job = quartzFactory.createJob(batchJob)
             scheduler.scheduleJob(job, batchJobCronTriggers.getCronTrigger(batchJob.cronExpression.name))
         }
     }
 
     private void loadSimpleJobs(BatchJobTriggers batchJobCronTriggers, scheduler) {
         batchJobCronTriggers.simpleJobs.each { batchJob ->
-            JobDetail job = quartzFactory.createJob(batchJob.jobName, batchJob.groupName)
+            JobDetail job = quartzFactory.createJob(batchJob)
             scheduler.scheduleJob(job, batchJobCronTriggers.getSimpleTrigger(batchJob.jobName))
         }
     }
