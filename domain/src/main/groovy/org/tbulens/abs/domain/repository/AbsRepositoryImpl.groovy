@@ -10,11 +10,12 @@ class AbsRepositoryImpl implements AbsRepository {
 
     //todo: Replace with mysql implementation using hibernate.
     List<BatchJob> findAllBatchJobs() {
-        BatchJob batchJob2 = createBatchJob("Job2")
+        BatchJob batchJob2 = createBatchJob("job2")
         batchJob2.cronExpression = new CronExpression(expression: "0/2 * * * * ?", name: "TriggerJob2")
-        BatchJob batchJob3 = createBatchJob("Job3")
+        BatchJob batchJob3 = createBatchJob("job3")
         batchJob3.lastRunDate = new Date()
-        [createBatchJob("Job1"), batchJob2, batchJob3]
+//        [createBatchJob("job1"), batchJob2, batchJob3]
+        [createBatchJob("job1")]
     }
 
     BatchJob findBatchJobByName(String batchJob) {
