@@ -7,14 +7,11 @@
        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
 
-
     <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
       <property name="locations" value="classpath:env.properties"/>
     </bean>
 
-    <bean id="httpRequester" class="org.tbulens.abs.batchscheduler.util.HttpRequester">
-        <property name="requestUrl" value="${abs.batch.job.requester.url}"/>
-    </bean>
+    <import resource="classpath:contexts/batchJobScheduleLog4jContext.xml"/>
 
     <context:component-scan base-package="org.tbulens.abs"/>
 
