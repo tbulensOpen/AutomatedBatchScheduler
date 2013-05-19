@@ -10,7 +10,7 @@
     </appender>
 
     <appender name="stdFile" class="org.apache.log4j.RollingFileAppender">
-        <param name="file" value="c:\\zzz\\abs.log"/>
+        <param name="file" value="c:\\zzz\\abs-test-job.log"/>
         <param name="maxFileSize" value="1MB"/>
         <layout class="org.apache.log4j.PatternLayout">
             <param name="ConversionPattern" value="%d{DATE} [%-5p] %c{1}: %m%n"/>
@@ -18,7 +18,7 @@
     </appender>
 
     <root>
-        <priority value="info"/>
+        <priority value="ERROR"/>
         <appender-ref ref="stdout"/>
         <appender-ref ref="stdFile"/>
     </root>

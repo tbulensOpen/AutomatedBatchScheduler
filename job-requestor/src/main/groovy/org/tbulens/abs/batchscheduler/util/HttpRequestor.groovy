@@ -1,5 +1,5 @@
 package org.tbulens.abs.batchscheduler.util
-import com.thoughtworks.xstream.XStream
+
 import groovyx.net.http.HTTPBuilder
 import org.springframework.stereotype.Component
 
@@ -13,9 +13,7 @@ class HttpRequestor {
         String requestUrl = "http://localhost:8080"
         HTTPBuilder http = new HTTPBuilder(requestUrl)
 
-        String xmlData = new XStream().toXML(data)
-
-        http.post( path: "/$jobName", body: xmlData,
+        http.post( path: "/$jobName", body: data,
                    requestContentType: URLENC ) { resp ->
 
          resp.statusLine.statusCode
