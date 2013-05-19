@@ -15,7 +15,9 @@ class AbsRepositoryImpl implements AbsRepository {
         BatchJob batchJob3 = createBatchJob("job3")
         batchJob3.lastRunDate = new Date()
 //        [createBatchJob("job1"), batchJob2, batchJob3]
-        [createBatchJob("job1")]
+        BatchJob batchJob1 = createBatchJob("job1")
+        batchJob1.data =[key1: "Hello", key2: "GoodBye"]
+        [batchJob1]
     }
 
     BatchJob findBatchJobByName(String batchJob) {

@@ -1,7 +1,6 @@
 package org.tbulens.abs.batchscheduler.quartz
-import org.quartz.JobDetail
-import org.quartz.Scheduler
-import org.quartz.Trigger
+
+import org.quartz.*
 import org.quartz.impl.StdSchedulerFactory
 import org.springframework.stereotype.Component
 import org.tbulens.abs.batchscheduler.service.JobRequester
@@ -22,28 +21,29 @@ class QuartzFactory {
     }
 
     Trigger createCronTriggerNew(String triggerName, String cronExpression) {
-          Trigger trigger = newTrigger()
-                  .withIdentity(triggerName)
-                  .withSchedule(cronSchedule(cronExpression))
-                  .build()
-      }
+        Trigger trigger = newTrigger()
+                .withIdentity(triggerName)
+                .withSchedule(cronSchedule(cronExpression))
+                .build()
+    }
 
     Trigger createSimpleTrigger(String jobName, String jobGroup) {
-          Trigger trigger = newTrigger()
-                  .withIdentity(jobName, jobGroup)
-                  .startNow()
-                  .withSchedule(simpleSchedule())
-                  .build()
-      }
+        Trigger trigger = newTrigger()
+                .withIdentity(jobName, jobGroup)
+                .startNow()
+                .withSchedule(simpleSchedule())
+                .build()
+    }
 
-    JobDetail createJob(String jobName, String jobGroup) {
-            newJob(JobRequester.class)
-                    .withIdentity(jobName, jobGroup)
-                    .build()
-        }
+    JobDetail createJob(BatchJob batchJob) {
+        JobDetail jobDetail = newJob(JobRequester.class)
+                         .withIdentity(batchJob.jobName, batchJob.groupName)
+                         .usingJobData(new JobDataMap(batchJob.data))
+                         .build()
+    }
 
     void scheduleJob(Scheduler scheduler, BatchJob batchJob) {
-        JobDetail job = createJob(batchJob.jobName, batchJob.groupName)
+        JobDetail job = createJob(batchJob)
 
         Trigger trigger = null
         CronExpression cronExpression = batchJob.cronExpression
@@ -69,7 +69,6 @@ class QuartzFactory {
                 .forJob(batchJob.jobName, batchJob.groupName)
                 .build();
     }
-
 
 
 }

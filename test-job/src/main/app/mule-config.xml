@@ -1,19 +1,28 @@
 <mule xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns="http://www.mulesoft.org/schema/mule/core"
       xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+      xmlns:mxml="http://www.mulesoft.org/schema/mule/xml"
       xmlns:spring="http://www.springframework.org/schema/beans" version="CE-3.3.1"
       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="
       http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
       http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-current.xsd
+      http://www.mulesoft.org/schema/mule/xml http://www.mulesoft.org/schema/mule/xml/current/mule-xml.xsd
       http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd">
 
+    <!--<mxml:xml-to-object-transformer name="XmlToObject"/>-->
 
     <flow name="HelloWorld1" doc:name="HelloWorld">
-            <http:inbound-endpoint exchange-pattern="request-response" host="localhost" port="8080" path="/job1" doc:name="Http Endpoint" contentType="text/plain" encoding="UTF-8"/>
+            <http:inbound-endpoint exchange-pattern="request-response" host="localhost" port="8080" path="/job1"
+                                   doc:name="Http Endpoint" contentType="text/plain" encoding="UTF-8">
+
+               <http:body-to-parameter-map-transformer doc:name="Body to Parameter Map"/>
+            </http:inbound-endpoint>
+                                   <!--transformer-refs="XmlToObject"/>-->
             <logger message="Job1 is being about to be called." level="INFO"/>
             <component class="org.tbulens.abs.testjob.service.HelloWorldImpl" doc:name="Hello world example">
-                <no-arguments-entry-point-resolver>
-                   <include-entry-point method="sayHello"/>
-               </no-arguments-entry-point-resolver>
+
+                <!--<no-arguments-entry-point-resolver>-->
+                   <!--<include-entry-point method="sayHello"/>-->
+               <!--</no-arguments-entry-point-resolver>-->
             </component>
             <logger message="Job1 was called." level="INFO"/>
             <catch-exception-strategy>
