@@ -14,6 +14,6 @@ class JobRequester implements Job {
 
         def data = jobDetail.jobDataMap.getWrappedMap()
 
-        httpRequestor().send(jobName, data)
+        httpRequestor.send(jobName, data)
     }
 }

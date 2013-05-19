@@ -124,16 +124,27 @@
                 <groupId>org.codehaus.groovy.modules.http-builder</groupId>
                 <artifactId>http-builder</artifactId>
                 <version>${http-builder.version}</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>commons-logging</groupId>
+                        <artifactId>commons-logging</artifactId>
+                    </exclusion>
+                </exclusions>
             </dependency>
             <dependency>
-            	<groupId>org.mule</groupId>
-            	<artifactId>mule-core</artifactId>
-            	<version>${mule.version}</version>
+                <groupId>org.mule.transports</groupId>
+                <artifactId>mule-transport-http</artifactId>
+                <version>${mule.version}</version>
             </dependency>
             <dependency>
-            	<groupId>com.thoughtworks.xstream</groupId>
-            	<artifactId>xstream</artifactId>
-            	<version>${xstream.version}</version>
+                <groupId>org.mule</groupId>
+                <artifactId>mule-core</artifactId>
+                <version>${mule.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.thoughtworks.xstream</groupId>
+                <artifactId>xstream</artifactId>
+                <version>${xstream.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

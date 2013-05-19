@@ -16,6 +16,6 @@ class HelloWorldImplTest {
 
     @Test
     void sayHello() {
-
+         helloWorld.sayHello(["name": "Ted"])
     }
 }

@@ -39,7 +39,7 @@ class BatchJobScheduleService {
 
         boolean stop = false
         while (!stop) {
-            Thread.sleep(5000)
+            Thread.sleep(10000)
             BatchJob scheduler = absRepository.findBatchJobByName(BATCH_JOB_SCHEDULER)
             stop = (scheduler.status.value() == JobStatus.STOP.value())
         }

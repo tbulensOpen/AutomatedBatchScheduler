@@ -3,10 +3,12 @@ package org.tbulens.abs.batchscheduler.quartz
 import org.quartz.*
 import org.quartz.impl.StdSchedulerFactory
 import org.springframework.stereotype.Component
+import org.tbulens.abs.batchscheduler.service.JobRequester
 import org.tbulens.abs.domain.model.BatchJob
 import org.tbulens.abs.domain.model.CronExpression
 
 import static org.quartz.CronScheduleBuilder.cronSchedule
+import static org.quartz.JobBuilder.newJob
 import static org.quartz.SimpleScheduleBuilder.simpleSchedule
 import static org.quartz.TriggerBuilder.newTrigger
 
@@ -34,9 +36,10 @@ class QuartzFactory {
     }
 
     JobDetail createJob(BatchJob batchJob) {
-        JobBuilder jobBuilder = new JobBuilder().usingJobData(new JobDataMap(batchJob.data))
-        jobBuilder.withIdentity(batchJob.jobName, batchJob.groupName)
-        jobBuilder.build()
+        JobDetail jobDetail = newJob(JobRequester.class)
+                         .withIdentity(batchJob.jobName, batchJob.groupName)
+                         .usingJobData(new JobDataMap(batchJob.data))
+                         .build()
     }
 
     void scheduleJob(Scheduler scheduler, BatchJob batchJob) {
