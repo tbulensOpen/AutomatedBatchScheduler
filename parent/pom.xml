@@ -146,6 +146,32 @@
                 <artifactId>xstream</artifactId>
                 <version>${xstream.version}</version>
             </dependency>
+            <dependency>
+                <groupId>org.hibernate</groupId>
+                <artifactId>hibernate-core</artifactId>
+                <version>3.6.10.Final</version>
+            </dependency>
+            <dependency>
+               <groupId>org.javassist</groupId>
+               <artifactId>javassist</artifactId>
+               <version>3.17.1-GA</version>
+            </dependency>
+            <dependency>
+               <groupId>mysql</groupId>
+               <artifactId>mysql-connector-java</artifactId>
+               <version>5.1.25</version>
+               <scope>runtime</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-beans</artifactId>
+                <version>${spring.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-orm</artifactId>
+                <version>${spring.version}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
