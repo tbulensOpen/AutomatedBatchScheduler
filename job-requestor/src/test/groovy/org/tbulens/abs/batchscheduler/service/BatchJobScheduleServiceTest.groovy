@@ -37,7 +37,7 @@ class BatchJobScheduleServiceTest {
         mockQuartzFactory.createSchedule().returns(scheduler)
 
         String jobName = BatchJobScheduleService.BATCH_JOB_SCHEDULER
-        BatchJob batchJobScheduler = new BatchJob(jobName: jobName, status: JobStatus.STOP)
+        BatchJob batchJobScheduler = new BatchJob(jobName: jobName, jobStatusId: JobStatus.STOP.value())
         mockAbsRepository.findBatchJobByName(BatchJobScheduleService.BATCH_JOB_SCHEDULER).returns(batchJobScheduler)
 
         play {

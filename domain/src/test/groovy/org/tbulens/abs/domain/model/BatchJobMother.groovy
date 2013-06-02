@@ -7,7 +7,7 @@ class BatchJobMother {
     }
 
     static BatchJob create(String jobName, String groupName, String cronExpression) {
-        new BatchJob(jobName: jobName, groupName: groupName, cronExpression: new CronExpression(expression: cronExpression, name: jobName) )
+        new BatchJob(jobName: jobName, groupName: groupName, cronExpression: new CronExpression(expression: cronExpression, name: jobName))
     }
 
     static BatchJob createSimpleJob(String jobName) {

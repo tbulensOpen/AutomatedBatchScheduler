@@ -12,6 +12,7 @@
     </bean>
 
     <import resource="classpath:contexts/batchJobScheduleLog4jContext.xml"/>
+    <import resource="classpath:contexts/batchJobScheduleDataSourceContext.xml"/>
 
     <context:component-scan base-package="org.tbulens.abs"/>
 

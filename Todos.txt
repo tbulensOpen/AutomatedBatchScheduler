@@ -16,4 +16,12 @@ Todos:
 
 4) Build Repository class to construct Triggers and Jobs
 
-   
+
+Mysql commands:
+
+1) mysql -u xxxx -p  where -u is userId
+2) CREATE DATABASE abs;
+3) use abs;
+4) CREATE TABLE BatchJob (BatchJobId int NOT NULL AUTO_INCREMENT, JobName varchar(50) NOT NULL UNIQUE, GroupName varchar(50) NOT NULL, CronExpressionId int, LastRunDate Date, JobStatusId int, PRIMARY KEY (BatchJobId));
+5) CREATE TABLE BatchJobData (BatchJobDataId int AUTO_INCREMENT, BatchJobId int, Name varchar(50) NOT NULL, Value varchar(50) NOT NULL, PRIMARY KEY (BatchJobDataId));
+6) CREATE TABLE CronExpression ( CronExpressionId int AUTO_INCREMENT, Name varchar(50) NOT NULL UNIQUE, Expression varchar(50) NOT NULL, Description varchar(100) NOT NULL, PRIMARY KEY (CronExpressionId));
