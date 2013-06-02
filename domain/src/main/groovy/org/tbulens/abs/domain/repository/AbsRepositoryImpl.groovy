@@ -21,7 +21,7 @@ class AbsRepositoryImpl implements AbsRepository {
     }
 
     BatchJob findBatchJobByName(String batchJob) {
-        new BatchJob(jobName: batchJob, status: JobStatus.STOP)
+        new BatchJob(jobName: batchJob, jobStatusId: JobStatus.STOP.value())
     }
 
     private BatchJob createBatchJob(String jobName) {
